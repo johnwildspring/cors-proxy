@@ -32,6 +32,8 @@ app.all('*', function (req, res, next) {
             headers: req.headers,
         };
         
+        delete configs.headers['host'];
+        
         console.log('configs', configs);
         
         request(configs,
