@@ -25,17 +25,20 @@ app.all('*', function (req, res, next) {
             return;
         }
         
-        const config = {
+        const configs = {
             url: targetURL + req.url,
             method: req.method,
             json: req.body,
             headers: req.headers,
         };
         
-        request(config,
+        console.log('configs', configs);
+        
+        request(configs,
             function (error, response, body) {
                 if (error) {
-                    console.error('error: ' + response.statusCode)
+                    console.log('error:', error);
+                    console.log('statusCode:', response && response.statusCode);
                 }
 //                console.log(body);
             }).pipe(res);
